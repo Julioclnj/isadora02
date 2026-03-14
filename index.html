@@ -1,13 +1,40 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Isadora</title>
+    <style>
+        body { background-color: #ffc0cb; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        .painel { background: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 85%; max-width: 400px; z-index: 10; position: relative; }
+        h1 { color: #ff4d4d; font-size: 1.5rem; margin-bottom: 20px; }
+        video { border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background-color: #000; }
+        .coracao { position: fixed; bottom: -10vh; font-size: 24px; color: #ff4d4d; user-select: none; pointer-events: none; z-index: 1; animation: flutuar 4s linear forwards; }
+        @keyframes flutuar { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div class="painel">
+        <h1>Se eu pudesse comparar sua perfeição a uma batalha de rima</h1>
+        <video width="100%" height="auto" controls playsinline>
+            <source src="https://the-drive-direct-link.vercel.app/api/drive?url=https://drive.google.com/file/d/1GnQpEk5hhQPOK2CMltEbcvujom4hNXkL/view?usp=sharing" type="video/mp4">
+            Seu navegador não suporta o vídeo.
+        </video>
+    </div>
+
+    <script>
+        function criarCoracao() {
+            const c = document.createElement('div');
+            c.classList.add('coracao');
+            c.innerHTML = '❤️';
+            c.style.left = Math.random() * 100 + 'vw';
+            c.style.animationDuration = Math.random() * 2 + 3 + 's';
+            c.style.opacity = Math.random();
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), 5000);
+        }
+        setInterval(criarCoracao, 300);
+    </script>
+</body>
 </html>
 
