@@ -4,37 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Isadora</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #ffc0cb; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
-        .painel { background: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 85%; max-width: 400px; z-index: 10; position: relative; }
-        h1 { color: #ff4d4d; font-size: 1.5rem; margin-bottom: 20px; }
-        video { border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background-color: #000; }
-        .coracao { position: fixed; bottom: -10vh; font-size: 24px; color: #ff4d4d; user-select: none; pointer-events: none; z-index: 1; animation: flutuar 4s linear forwards; }
-        @keyframes flutuar { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
+        body { margin: 0; overflow: hidden; background-color: #fce4ec; }
+        .romantic-red { color: #e91e63; }
+        .bg-romantic-pink { background-color: #fce4ec; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .coracao { position: fixed; bottom: -10vh; z-index: 1; animation: flutuar linear forwards; }
+        @keyframes flutuar {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-115vh) rotate(45deg); opacity: 0; }
+        }
     </style>
 </head>
-<body>
-    <div class="painel">
-        <h1>Se eu pudesse comparar sua perfeição a uma batalha de rima</h1>
-        <video width="100%" height="auto" controls playsinline>
-            <source src="https://the-drive-direct-link.vercel.app/api/drive?url=https://drive.google.com/file/d/1GnQpEk5hhQPOK2CMltEbcvujom4hNXkL/view?usp=sharing" type="video/mp4">
-            Seu navegador não suporta o vídeo.
-        </video>
+<body class="bg-romantic-pink min-h-screen flex items-center justify-center relative">
+
+    <div id="hearts-container" class="absolute inset-0 pointer-events-none"></div>
+
+    <div class="relative z-10 w-[90%] max-w-[700px] bg-white rounded-[30px] shadow-2xl p-8 md:p-12 text-center border border-white/50 backdrop-blur-sm">
+        
+        <div class="inline-block mb-6 text-pink-500">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        </div>
+
+        <h1 class="text-3xl md:text-4xl text-gray-900 leading-tight mb-10 px-4 font-sans font-bold">
+            Se eu pudesse comparar sua perfeição a uma <br />
+            <span class="italic font-serif text-pink-600">batalha de rima...</span>
+        </h1>
+
+        <div class="relative aspect-video w-full rounded-2xl overflow-hidden shadow-xl border-4 border-gray-50 bg-black">
+            <iframe
+                src="https://drive.google.com/file/d/1GnQpEk5hhQPOK2CMltEbcvujom4hNXkL/preview"
+                class="w-full h-full border-none"
+                allow="autoplay">
+            </iframe>
+        </div>
+
+        <div class="mt-10">
+            <p class="font-serif text-xl text-gray-500 italic">Dedicado à Isadora</p>
+            <div class="w-12 h-0.5 bg-pink-200 mx-auto mt-4"></div>
+        </div>
+    </div>
+
+    <div class="absolute bottom-6 w-full text-center text-gray-400 font-serif italic text-sm">
+        Feito com carinho
     </div>
 
     <script>
         function criarCoracao() {
-            const c = document.createElement('div');
-            c.classList.add('coracao');
-            c.innerHTML = '❤️';
-            c.style.left = Math.random() * 100 + 'vw';
-            c.style.animationDuration = Math.random() * 2 + 3 + 's';
-            c.style.opacity = Math.random();
-            document.body.appendChild(c);
-            setTimeout(() => c.remove(), 5000);
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.className = 'coracao';
+            heart.innerHTML = '❤️';
+            
+            const size = Math.random() * 20 + 15;
+            const duration = Math.random() * 2 + 3;
+            const left = Math.random() * 100;
+
+            heart.style.left = left + 'vw';
+            heart.style.fontSize = size + 'px';
+            heart.style.animationDuration = duration + 's';
+            
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), duration * 1000);
         }
         setInterval(criarCoracao, 300);
     </script>
 </body>
 </html>
-
